@@ -72,4 +72,4 @@ about, written up with what they cost as well as what they bought.
 
 ---
 
-*y.ghahremani@gmail.com*
+*[LinkedIn](https://www.linkedin.com/in/yousof-ghahremani-31576044/) · y.ghahremani@gmail.com*
