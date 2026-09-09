@@ -18,10 +18,25 @@ published, so the code here was rewritten against stub endpoints. The
 architecture, the domain rules and the decisions are the real ones. Each repo
 says so in its README, and I'm happy to walk through the originals on a call.
 
-They're not a tour of frameworks. Four of them are **one system seen from
-different angles** — a multi-carrier SIM platform, its support portal, its AWS
-infrastructure; and a messaging API, its React client, its Azure side. Opening
-two of them together shows more than either does alone.
+Six repositories cover two related system designs: a SIM platform, its support portal and AWS infrastructure; and a messaging API, React client and Azure notification components. They are independent public samples, with integration gaps described in their READMEs.
+
+---
+
+### What I want this portfolio to show
+
+I want reviewers to see how I connect backend design, frontend behaviour and cloud operations to the needs of customers and support teams.
+
+| Area | Repository | What to look for |
+|---|---|---|
+| Backend domain design | [sim-platform](https://github.com/yght/sim-platform) | Carrier normalisation, lifecycle rules and failure handling |
+| Support workflows | [sim-portal](https://github.com/yght/sim-portal) | Optimistic actions, rollback and permission-aware presentation |
+| Cloud operations | [sim-infra](https://github.com/yght/sim-infra) | Network boundaries, usage parsing and operational alarms |
+| C# API structure | [dotnet-showcase](https://github.com/yght/dotnet-showcase) | API, service and persistence boundaries in a historical sample |
+| Messaging UX | [message-web](https://github.com/yght/message-web) | Client-generated IDs, reconciliation and polling |
+| Azure and notification rules | [message-azure](https://github.com/yght/message-azure) | Policy precedence, managed identity and infrastructure definitions |
+| Applied AI | [ad-optimizer](https://github.com/yght/ad-optimizer) | Statistical allocation, validation and bounded repair |
+
+Each README includes a short reading path and the scope of the public sample. These repositories support a discussion of engineering decisions; they do not by themselves establish production scale, measured performance gains or a complete running system.
 
 ---
 
@@ -43,11 +58,10 @@ absence is the control. Plus a nightly usage ingest across three carrier file
 formats and three different unit systems.
 
 **[dotnet-showcase](https://github.com/yght/dotnet-showcase)** · .NET, 2016–21
-A messaging API tracked across five years of the platform, from .NET Core 1.1
-through to .NET 6.
+A historical C# messaging API sample targeting .NET Core 1.1, showing API, service and data-access boundaries. Test implementation and integration remain incomplete.
 
 **[message-web](https://github.com/yght/message-web)** · React + TypeScript, 2020
-The client for it, on HTTP long-polling. Your own message reaches the browser
+A related client sample designed around HTTP long-polling. Your own message reaches the browser
 three different ways in any order; reconciling that is the whole repo.
 
 **[message-azure](https://github.com/yght/message-azure)** · Bicep + Functions, 2021
@@ -64,10 +78,9 @@ deterministic validator that trusts neither. 120 tests, none of which call an AP
 
 Read **[sim-platform's carrier normaliser](https://github.com/yght/sim-platform/blob/main/services/carrier-service/src/domain/normalize.js)**
 or **[message-web's reconciliation reducer](https://github.com/yght/message-web/blob/main/src/messages/messageReducer.ts)**.
-Both are about a hundred lines, both solve a problem that isn't obvious until
-it bites, and both have the incident that caused them in the commit message.
+Both expose the domain and state-management decisions directly. Read their tests and the README limitations alongside the implementation.
 
-Every repo has a `docs/adr/` folder. Those are the decisions worth arguing
+The SIM, React, Azure and ad-optimizer repositories have `docs/adr/` folders. Those are the decisions worth arguing
 about, written up with what they cost as well as what they bought.
 
 ---
