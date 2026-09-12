@@ -31,7 +31,7 @@ I want reviewers to see how I connect backend design, frontend behaviour and clo
 | Backend domain design | [sim-platform](https://github.com/yght/sim-platform) | Carrier normalisation, lifecycle rules and failure handling |
 | Support workflows | [sim-portal](https://github.com/yght/sim-portal) | Optimistic actions, rollback and permission-aware presentation |
 | Cloud operations | [sim-infra](https://github.com/yght/sim-infra) | Network boundaries, usage parsing and operational alarms |
-| C# API structure | [dotnet-showcase](https://github.com/yght/dotnet-showcase) | API, service and persistence boundaries in a historical sample |
+| C# API structure | [dotnet-showcase](https://github.com/yght/dotnet-showcase) | JWT tenant boundaries, durable idempotency and API integration tests |
 | Messaging UX | [message-web](https://github.com/yght/message-web) | Client-generated IDs, reconciliation and polling |
 | Azure and notification rules | [message-azure](https://github.com/yght/message-azure) | Policy precedence, managed identity and infrastructure definitions |
 | Applied AI | [ad-optimizer](https://github.com/yght/ad-optimizer) | Statistical allocation, validation and bounded repair |
@@ -45,7 +45,7 @@ Each README includes a short reading path and the scope of the public sample. Th
 **[sim-platform](https://github.com/yght/sim-platform)** · Node.js, 2018
 One API over three carriers who agree about nothing. Bell speak in mainframe
 codes, Vodafone are asynchronous, AT&T return 409 for anything they dislike.
-The interesting file is the normaliser that folds all three into one vocabulary.
+The normaliser folds all three into one vocabulary. A modern Node.js 24 example adds a transactional SQLite outbox, durable command receipts and fenced relay leases, with 10 focused tests.
 
 **[sim-portal](https://github.com/yght/sim-portal)** · Angular 6 + NgRx, 2018
 The support tool for the above. Optimistic commands with rollback, and a test
@@ -57,8 +57,8 @@ Three subnet tiers where the isolated one has no default route at all — the
 absence is the control. Plus a nightly usage ingest across three carrier file
 formats and three different unit systems.
 
-**[dotnet-showcase](https://github.com/yght/dotnet-showcase)** · .NET, 2016–21
-A historical C# messaging API sample targeting .NET Core 1.1, showing API, service and data-access boundaries. Test implementation and integration remain incomplete.
+**[dotnet-showcase](https://github.com/yght/dotnet-showcase)** · .NET 10 + historical C#
+The modern messaging API demonstrates JWT tenant boundaries, SQLite-backed idempotency and cursor pagination, with 12 integration tests. Historical code is retained separately with its limitations documented.
 
 **[message-web](https://github.com/yght/message-web)** · React + TypeScript, 2020
 A related client sample designed around HTTP long-polling. Your own message reaches the browser
@@ -70,9 +70,12 @@ services, so there is no credential in the repo because there is no credential.
 
 **[ad-optimizer](https://github.com/yght/ad-optimizer)** · Python + Claude, 2025–26
 Thompson sampling to allocate ad traffic, an LLM to write the copy, and a
-deterministic validator that trusts neither. 120 tests, none of which call an API.
+deterministic validator that trusts neither. 123 tests, none of which call an API.
 
 ---
+
+**[tech-evolution](https://github.com/yght/tech-evolution)** · Teaching excerpts
+Compare architectural approaches across tooling eras. The README identifies these as excerpts with incomplete standalone build infrastructure.
 
 ### If you're short on time
 
@@ -86,3 +89,9 @@ about, written up with what they cost as well as what they bought.
 ---
 
 *[LinkedIn](https://www.linkedin.com/in/yousof-ghahremani-31576044/) · y.ghahremani@gmail.com*
+
+## Engineering practices
+
+[Contribution and verification guide](CONTRIBUTING.md) · [Review template](.github/pull_request_template.md)
+
+This repository is a profile, not an application. There is no application test suite to run.
